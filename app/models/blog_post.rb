@@ -1,0 +1,9 @@
+class BlogPost < ActiveRecord::Base
+	validates :title, presence: true
+  :subtitle
+  validates :body, presence: true
+
+  has_many :blog_post_comments, dependent: :nullify
+
+  scope :newest_first, -> { order("updated_at DESC") }
+end

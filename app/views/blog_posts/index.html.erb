@@ -1,0 +1,38 @@
+<h1>Blog Posts</h1>
+
+<!-- <hr>
+<ul>
+  <% @blog_posts.each do |blog_post| %>
+    <li>
+      <%= blog_post.title %> 
+      <%= link_to "show", blog_post %> 
+      <%= link_to "edit", edit_blog_post_path(blog_post) %> 
+      <%= link_to "delete", blog_post, method: :delete, data: {confirm: "Delete post?"} %>
+    </li>
+  <% end %>
+</ul> -->
+
+<ul>
+	<table>
+		<tr>
+			<th>Title</th>
+			<th>Subtitle</th>
+			<th>Body</th>
+			<th>Action</th>
+			<th colspan="2"></th>
+		</tr>
+
+		<% @blog_posts.each do |blog_post| %>
+			<tr>
+				<td><%= blog_post.title %></td>
+				<td><%= blog_post.subtitle %></td>
+				<td><%= blog_post.body %></td>
+				<td>
+					<%= link_to "show", blog_post %> 
+		      <%= link_to "edit", edit_blog_post_path(blog_post) %> 
+		      <%= link_to "delete", blog_post, method: :delete, data: {confirm: "Delete post?"}%>
+		    </td>
+	    </tr>
+		<% end %>
+	</table>
+</ul>
