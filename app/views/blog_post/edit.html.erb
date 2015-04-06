@@ -1,0 +1,21 @@
+<h1>BlogPost#edit</h1>
+<%= form_for :blog_post do |f| %>
+  <p>
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+  </p>
+	
+  <p>
+    <%= f.label :subtitle %><br>
+    <%= f.text_field :subtitle %>
+  </p>
+
+  <p>
+    <%= f.label :body %><br>
+    <%= f.text_area :body %>
+  </p>
+ 
+  <p>
+    <%= f.submit 'Edit Post' %>
+  </p>
+<% end %>
