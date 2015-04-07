@@ -3,16 +3,19 @@ Rails.application.routes.draw do
   root  'home#index'
   
   get     '/blog_posts/index'
-  get     '/blog_posts/new' => 'blog_posts#new'
+  get     '/blog_posts/new' => 'blog_posts#new', as: :new_blog_post
   post    '/blog_posts/new' => 'blog_posts#create', as: :blog_posts
   get     '/blog_posts/:id' => 'blog_posts#show', as: :blog_post
   patch   '/blog_posts/:id' => 'blog_posts#update'
   delete  '/blog_posts/:id' => 'blog_posts#destroy'
   get     '/blog_posts/edit/:id' => 'blog_posts#edit', as: :edit_blog_post
   post    '/blog_posts/edit/:id' => 'blog_posts#update'
-  post    '/blog_posts/:id' => 'blog_posts#update'
+  post    '/blog_posts/:id' => 'blog_post_comments#create'
 
-  resources :blog_posts, only: [:show] do
+  delete  '/blog_post_comments/:id' => 'blog_post_comments#destroy', as: :destroy_blog_post_comment
+  get     '/blog_post_comments/:id' => 'blog_posts#show'
+
+  resources :blog_posts do
     resources :blog_post_comments#, only: [:create]
   end
 

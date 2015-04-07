@@ -5,12 +5,19 @@ class BlogPostCommentsController < ApplicationController
 	  @blog_post = BlogPost.find(params[:blog_post_id])
 	  @blog_post_comment = BlogPostComment.new comment_params
 	  @blog_post_comment.blog_post = @blog_post
+
 	  if @blog_post_comment.save
 	  	redirect_to blog_post_path(@blog_post)
 	  else
 	  	render 'blog_posts/show'
 	  end
 	end
+
+	def destroy
+    @blog_post_comment = BlogPostComment.find(params[:id])
+    @blog_post_comment.destroy
+    redirect_to blog_posts_show_path
+  end
 
 	private
 

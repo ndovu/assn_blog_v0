@@ -6,7 +6,8 @@
 
 <h3>Add Comment</h3>
 
-<%= form_for :blog_post_comment do |comment| %>
+<%= form_for [@blog_post, @blog_post_comment] do |comment| %>
+	
 	<p>
 		<%= comment.label :comment_title %><br>
 		<%= comment.text_field :title %>
@@ -19,6 +20,35 @@
 	<p>
     <%= comment.submit 'Save Comment' %>
   </p>
-
 <% end %>
 
+<% if @blog_post_comment.errors.any? %>
+  <ul>
+    <% @blog_post_comment.errors.full_messages.each do |msg| %>
+      <li><% msg %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<h4>Comments</h4>
+<ul>
+	<table>
+		<tr>
+			<th>Title</th>
+			<th>Body</th>
+			<th>Action</th>
+			<th colspan="2"></th>
+		</tr>
+
+		<% @blog_post_comments.each do |blog_comment| %>
+			<tr>
+				<td><%= blog_comment.title %></td>
+				<td><%= blog_comment.body %></td>
+				<td>
+					<!-- Build in edit comment functionality -->
+		      <%= link_to "delete", controller: 'blog_post_comments', action: 'destroy', id: blog_comment, data: {confirm: "Delete comment?"}%>
+		    </td>
+	    </tr>
+		<% end %>
+	</table>
+</ul>

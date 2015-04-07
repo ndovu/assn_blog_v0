@@ -5,5 +5,5 @@ class BlogPost < ActiveRecord::Base
 
   has_many :blog_post_comments, dependent: :nullify
 
-  scope :newest_first, -> { order("updated_at DESC") }
+  scope :last_updated_first, -> { order("updated_at DESC") }
 end
